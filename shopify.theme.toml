@@ -1,0 +1,4 @@
+[environments.default]
+store = "b052wj-bq.myshopify.com"
+theme = "180765557052"
+allow-live = true   # optional, lets you push to the live theme

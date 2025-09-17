@@ -98,8 +98,10 @@
             {%- liquid
               if forloop.index == 1
                 assign loading = section.settings.lazyload_images
+                assign fetchpriority = 'high'
               else
                 assign loading = true
+                assign fetchpriority = 'auto'
               endif
 
               assign classes = 'fading-images__item fading-images__item--' | append: block.id
@@ -107,8 +109,12 @@
             {%- render 'image-element',
               img: block.settings.image,
               loading: loading,
+              fetchpriority: fetchpriority,
               classes: classes,
               animation: 'none',
+              format: 'webp',
+              sizes: '(max-width: 768px) 100vw, 100vw',
+              widths: '400, 600, 800, 1200, 1600, 2000',
             -%}
           </div>
         {%- else -%}

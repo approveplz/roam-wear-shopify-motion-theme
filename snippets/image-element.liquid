@@ -6,6 +6,7 @@
      - classes (Optional - String)
      - alt (Optional - String)
      - loading (Optional - String)
+     - fetchpriority (Optional - String)
      - img_height (Optional - String)
      - img_width (Optional - String)
      - sizes (Optional - String)
@@ -93,6 +94,10 @@
     assign animation = animation
   endif
 
+  if fetchpriority == blank
+    assign fetchpriority = 'auto'
+  endif
+
   # Add a class to the image so we can target theme images
   assign classes = classes | append: ' image-element'
 %}
@@ -117,6 +122,7 @@
                   width: img_tag_width,
                   class: classes,
                   loading: loading,
+                  fetchpriority: fetchpriority,
                   alt: alt,
                   sizes: sizes,
                   widths: widths,
@@ -142,6 +148,7 @@
                   width: img_tag_width,
                   class: classes,
                   loading: loading,
+                  fetchpriority: fetchpriority,
                   alt: alt,
                   sizes: sizes,
                   itemprop: itemprop,
@@ -164,6 +171,7 @@
     height="{{ img_height }}"
     class="{{ classes }}"
     loading="{{ loading }}"
+    fetchpriority="{{ fetchpriority }}"
     alt="{{ alt }}"
     srcset="{{ img_widths }}"
     data-photoswipe-src="{{ img | image_url: width: product_zoom_size, format: format }}"
@@ -192,6 +200,7 @@
        height="{{ img_height }}"
        class="{{ classes }}"
        loading="{{ loading }}"
+       fetchpriority="{{ fetchpriority }}"
        alt="{{ alt }}"
        {% if img_widths != blank %}srcset="{{ img_widths }}"{% endif %}
        {% if data-name and data-value %}data-{{ data-name }}="{{ data-value }}"{% endif %}
